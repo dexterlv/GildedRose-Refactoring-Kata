@@ -7,9 +7,9 @@ from gilded_rose import Item, GildedRose
 class GildedRoseTest(unittest.TestCase):
     def test_regular(self):
         items = [
-            Item("foo", 2, 2),
-            Item("bro", 0, 3),
-            Item("old", 0, 1)
+            Item("foo", 2, 2), # Testing regular behaviour
+            Item("bro", 0, 3), # Testing when sell_in 0, quality should reduce by 2
+            Item("old", 0, 1)  # Testing when quality should never be lower than 0
         ]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
@@ -28,9 +28,9 @@ class GildedRoseTest(unittest.TestCase):
 
     def test_aged_brie(self):
         items = [
-            Item("Aged Brie", 2, 2),
-            Item("Aged Brie", 0, 3),
-            Item("Aged Brie", 0, 49)
+            Item("Aged Brie", 2, 2), # Testing regular behaviour
+            Item("Aged Brie", 0, 3), # Testing when sell_in 0, quality should be increased by 2
+            Item("Aged Brie", 0, 49) # Testing when quality should never be higher than 50
         ]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
@@ -50,7 +50,7 @@ class GildedRoseTest(unittest.TestCase):
 
     def test_sulfuras(self):
         items = [
-            Item("Sulfuras, Hand of Ragnaros", 2, 2)            
+            Item("Sulfuras, Hand of Ragnaros", 2, 2) # Testing regular behaviour, nothing should change for Sulfuras            
         ]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
@@ -61,10 +61,10 @@ class GildedRoseTest(unittest.TestCase):
 
     def test_backstage_passes(self):
         items = [
-            Item("Backstage passes to a TAFKAL80ETC concert", 14, 5),
-            Item("Backstage passes to a TAFKAL80ETC concert", 7, 5),
-            Item("Backstage passes to a TAFKAL80ETC concert", 1, 5),
-            Item("Backstage passes to a TAFKAL80ETC concert", 1, 49)
+            Item("Backstage passes to a TAFKAL80ETC concert", 14, 5), # Testing when sell_in > 10
+            Item("Backstage passes to a TAFKAL80ETC concert", 7, 5), # Testing when sell_in > 5 < 10
+            Item("Backstage passes to a TAFKAL80ETC concert", 1, 5), # Testing when sell_in > 0 < 5
+            Item("Backstage passes to a TAFKAL80ETC concert", 1, 49) # Testing when quality should never be higher than 50
         ]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
@@ -87,9 +87,9 @@ class GildedRoseTest(unittest.TestCase):
 
     def test_conjured(self):
         items = [
-            Item("Conjured Mana Cake", 2, 3),
-            Item("Conjured Mana Cake", 0, 5),
-            Item("Conjured Mana Cake", 0, 2)
+            Item("Conjured Mana Cake", 2, 3), # Testing regular behaviour
+            Item("Conjured Mana Cake", 0, 5), # Testing when sell_in 0, quality should be reduced by 4
+            Item("Conjured Mana Cake", 0, 2) # Testing when quality should never be lower than 0
         ]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
