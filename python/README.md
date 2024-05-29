@@ -1,10 +1,14 @@
 # Gilded Rose starting position in Python
 
+## Application logic improvements
+Main GildedRose class has been improved by creating separate update method for each item type. 
+
 ## Run the unit tests from the Command-Line
 
 ```
 python test_gilded_rose.py
 ```
+Unit tests have been improved to cover all required scenarios for each item type.
 
 ## Run the TextTest fixture from the Command-Line
 
